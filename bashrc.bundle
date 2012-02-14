@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+
+export BB_ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+export BB_BUNDLE_PATH=${BB_BUNDLE_PATH:=$BB_ROOT}
+export BB_INFO=${BB_INFO:=false}
+export BB_DEBUG=${BB_DEBUG:=false}
+
+
+function bb_info() {
+	$BB_INFO && echo "$@"
+}
+
+
+function bb_debug() {
+	$BB_DEBUG && echo "$@"
+}
+
+
+function bb_error() {
+	echo "$@"
+}
+
+
+function bb_find_bundles() {
+	find "$@" -maxdepth 2 -mindepth 2 -type f -name bundle
+}
+
+
+function bb_load_bundle() {
+	local broot=$(dirname "$bundle")
+	if ! [ -f "$bundle" ] ; then
+		log_error "bundle not found: $bundle"
+		return
+	fi
+	bb_debug "checking for $broot/bin/"
+	if [ -d $broot/bin/ ] ; then
+		bb_extend_path $broot/bin/
+	fi
+	source $bundle
+}
+
+
+function bb_extend_path() {
+	local path="$1"
+	if [ ":$PATH:" != *":$path:"* ] ; then
+		bb_debug "$path already in path, skipping"
+		return
+	fi
+	bb_info "extending path with $broot/bin"
+	PATH="$PATH:$path"
+}
+
+
+function bb_autoload_bundles() {
+	local bundle=
+	bb_info "loading bundles from $BB_BUNDLE_PATH"
+	for bundle in $(bb_find_bundles $BB_BUNDLE_PATH/autoload/) ; do
+		bb_load_bundle $bundle
+	done
+}
+
+
+function bb_load_bundles() {
+	local bundle=
+	bb_info "loading bundles from $BB_BUNDLE_PATH"
+	for bundle in $BB_LOAD_BUNDLES ; do
+		if [[ $bundle =~ /* ]] ; then
+			bb_load_bundle $bundle/bundle
+		else
+			bb_load_bundle $BUNDLE_BUNDLE_PATH/$bundle/bundle
+		fi
+	done
+}
+
+
+bb_autoload_bundles
+bb_load_bundles
