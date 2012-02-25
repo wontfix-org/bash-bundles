@@ -26,9 +26,7 @@ function bb_error() {
 
 
 function bb_find_bundles() {
-set -x
 	find -L "$@" -maxdepth 2 -mindepth 2 -type f -name bundle
-	set +x
 }
 
 function bb_source() {
