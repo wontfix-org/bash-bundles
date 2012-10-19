@@ -17,5 +17,13 @@ matter if its a cloned git repository or a handcrafted directory structure.
 
 # Features
 
- * If there is a bin/ directory in your bundle, its automatically added to your $PATH
+## Automatic PATH extension
 
+If there is a bin/ directory in your bundle, its automatically added to your $PATH
+
+## Custom bashrc.<topic> includes
+
+	BB_LOAD_FILES="completion ?ruby utils gentoo ?$(hostname -s) ?$(hostname -f)"
+
+This will load files named "bashrc.<topic>", topics prefixed with a ? may not exists
+without an error being thrown. Topics prefixed with a ! are not loaded.
