@@ -11,9 +11,7 @@ Clone the main repository into an arbitrary directory and source the script some
 
 # Usage
 
-To add a new bundle, put one into the ~/.bb.autoload directory. The minimum requirement
-is a bundle file in the root directory of the bundle, that can be sourced. It does not
-matter if its a cloned git repository or a handcrafted directory structure.
+To add a new bundle, clone/put a bundle directory into the ~/.bb.autoload directory. The minimum requirement is a bash sourceable bundle file in the root directory of the bundle. It does not matter if its a cloned git repository or a handcrafted directory structure.
 
 # Features
 
