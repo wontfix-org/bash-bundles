@@ -6,7 +6,7 @@ Like pathogen for bash, allows to easily use and share snippets of shellscripts.
 
 Clone the main repository into an arbitrary directory and source the script somewhere in your bashrc:
 
-    git clone git@github.com:wontfix-org/bash-bundles.git ~/.bash.bundles
+    git clone git://github.com/wontfix-org/bash-bundles.git ~/.bash.bundles
     echo 'source $HOME/.bash.bundles/bashrc' >> $HOME/.bashrc
 
 # Usage
