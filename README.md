@@ -23,4 +23,4 @@ If there is a bin/ directory in your bundle, its automatically added to your $PA
 
 	BB_LOAD_FILES="completion ?ruby utils gentoo ?$(hostname -s) ?$(hostname -f)"
 
-This will load files named "bashrc.YOUR_TOKEN", files prefixed with a ? do not produce errors if they are missing.
+This will load files named ".bashrc.YOUR_TOKEN", files prefixed with a ? do not produce errors if they are missing.
