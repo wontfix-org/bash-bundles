@@ -50,7 +50,7 @@ function bb_load_bundle() {
 
 function bb_extend_path() {
 	local path="$1"
-	if [ ":$PATH:" == *":$path:"* ] ; then
+	if [[ ":$PATH:" == *":$path:"* ]] ; then
 		bb_debug "Found '$path' already in path, skipping"
 		return
 	fi
