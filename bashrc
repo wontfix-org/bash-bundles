@@ -10,6 +10,7 @@ export BB_FILES_PREFIX=${BB_FILES_PREFIX:-.bashrc.}
 export BB_FILES_SUFFIX=${BB_FILES_SUFFIX:-}
 export BB_LOAD_FILES=${BB_LOAD_FILES:-}
 
+
 function bb_info() {
 	$BB_INFO && echo "$@"
 }
@@ -91,9 +92,11 @@ function bb_load_bundles() {
 	done
 }
 
+
 function bb_file() {
 	echo ${BB_FILES_PATH}/${BB_FILES_PREFIX}${name}${BB_FILES_SUFFIX}
 }
+
 
 function bb_load_files() {
 	local file=
@@ -124,6 +127,7 @@ function bb_load_files() {
 	done
 }
 
+
 function bb_update() {
     local bundle=
     local name=
@@ -142,6 +146,7 @@ function bb_update() {
         done <$BB_ROOT/bundles
     fi
 }
+
 
 function bb_auto_create() {
     if [[ ! -d $BB_AUTOLOAD_PATH ]]; then
