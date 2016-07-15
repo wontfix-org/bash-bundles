@@ -121,6 +121,33 @@ function bb_load_files() {
 	done
 }
 
+function bb_update() {
+    local bundle=
+    local name=
+    if [[ -f $BB_ROOT/bundles ]]; then
+        while read bundle; do
+            name=$(basename $bundle)
+            name=${name%%.git}
+            bb_info "Found $name";
+            if [[ -d ${BB_AUTOLOAD_PATH}/${name} ]]; then
+                bb_info "Updating $name"
+                (cd ${BB_AUTOLOAD_PATH}/${name}; git pull)
+            else
+                bb_info "Cloning $name"
+                git clone $bundle ${BB_AUTOLOAD_PATH}/${name}
+            fi
+        done <$BB_ROOT/bundles
+    fi
+}
+
+function bb_auto_create() {
+    if [[ ! -d $BB_AUTOLOAD_PATH ]]; then
+        mkdir -p $BB_AUTOLOAD_PATH
+        bb_update
+    fi
+}
+
+bb_auto_create
 bb_autoload_bundles
 bb_load_bundles
 bb_load_files
