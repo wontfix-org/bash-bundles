@@ -9,6 +9,7 @@ export BB_FILES_PATH=${BB_FILES_PATH:-$HOME}
 export BB_FILES_PREFIX=${BB_FILES_PREFIX:-.bashrc.}
 export BB_FILES_SUFFIX=${BB_FILES_SUFFIX:-}
 export BB_LOAD_FILES=${BB_LOAD_FILES:-}
+export BB_BUNDLES_FILE=${BB_BUNDLES_FILE:-$BB_ROOT/bundles}
 
 
 function bb_info() {
@@ -131,7 +132,7 @@ function bb_load_files() {
 function bb_update() {
     local bundle=
     local name=
-    if [[ -f $BB_ROOT/bundles ]]; then
+    if [[ -f $BB_BUNDLES_FILE ]]; then
         while read bundle; do
             name=$(basename $bundle)
             name=${name%%.git}
@@ -143,7 +144,7 @@ function bb_update() {
                 bb_info "Cloning $name"
                 git clone $bundle ${BB_AUTOLOAD_PATH}/${name}
             fi
-        done <$BB_ROOT/bundles
+        done <$BB_BUNDLES_FILE
     fi
 }
 
