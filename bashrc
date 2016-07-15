@@ -29,11 +29,14 @@ function bb_find_bundles() {
 	find -L "$@" -maxdepth 2 -mindepth 2 -type f -name bundle
 }
 
+
 function bb_source() {
 	local file=$1
 	bb_info "Loading $file"
 	source $file
 }
+
+
 function bb_load_bundle() {
 	local broot=$(dirname "$bundle")
 	if ! [ -f "$bundle" ] ; then

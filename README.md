@@ -1,6 +1,6 @@
 # Bash Bundles
 
-Like pathogen for bash, allows to easily use and share snippets of shellscripts.
+My personal bash plugin manager, for sharing small bash snippets and structuring your bashrc into multiple files.
 
 # Installation
 
@@ -11,7 +11,7 @@ Clone the main repository into an arbitrary directory and source the script some
 
 # Usage
 
-To add a new bundle, clone/put a bundle directory into the ~/.bb.autoload directory. The minimum requirement is a bash sourceable bundle file in the root directory of the bundle. It does not matter if its a cloned git repository or a handcrafted directory structure.
+To add a new bundle, clone/put a bundle directory into the `~/.bb.autoload` directory. The minimum requirement is a bash sourceable bundle file in the root directory of the bundle. It does not matter if its a cloned git repository or a handcrafted directory structure.
 
 # Features
 
@@ -27,11 +27,12 @@ This will load files named ".bashrc.YOUR_TOKEN", files prefixed with a ? do not 
 
 ## Vundle-like package management
 
-You can place a file named *bundles* into your BB_ROOT-directory, containing git repo URLs (one repo per line) pointing at a bash bundle. These will be checked out and can be updated using the *bb_update* shell function.
+You can add git URLs to a file `~/.bash.bundles/bundles`, these can be installed and updated by running the `bb_update` command.
+When the `~/.bb.autoload` directory does not exist, `bb_update` is called automatically the first time you open a new shell.
 
-Example *bundles*-file:
+Example `bundles`-file:
 
-    https://github.com/wontfix-org/bash-bundles-nscreen.git
-    https://github.com/wontfix-org/bash-bundles-autoremote.git
-
-This would auto-checkout the two bundles whenever you initially source the main bash-bundles bashrc.
+```
+https://github.com/wontfix-org/bash-bundles-nscreen.git
+https://github.com/wontfix-org/bash-bundles-autoremote.git
+```
