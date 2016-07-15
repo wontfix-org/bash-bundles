@@ -139,7 +139,7 @@ function bb_update() {
             bb_info "Found $name";
             if [[ -d ${BB_AUTOLOAD_PATH}/${name} ]]; then
                 bb_info "Updating $name"
-                (cd ${BB_AUTOLOAD_PATH}/${name}; git pull)
+                (cd ${BB_AUTOLOAD_PATH}/${name}; git pull --ff-only)
             else
                 bb_info "Cloning $name"
                 git clone $bundle ${BB_AUTOLOAD_PATH}/${name}
