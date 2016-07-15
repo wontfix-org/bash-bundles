@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
 export BB_ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-export BB_BUNDLE_PATH=${BB_BUNDLE_PATH:=$HOME/.bb.bundles/}
-export BB_AUTOLOAD_PATH=${BB_AUTOLOAD_PATH:=$HOME/.bb.autoload/}
-export BB_INFO=${BB_INFO:=false}
-export BB_DEBUG=${BB_DEBUG:=false}
-export BB_FILES_PATH=${BB_FILES_PATH:=$HOME}
-export BB_FILES_PREFIX=${BB_FILES_PREFIX:=.bashrc.}
-export BB_FILES_SUFFIX=${BB_FILES_SUFFIX:=}
-export BB_LOAD_FILES=${BB_LOAD_FILES:=}
+export BB_BUNDLE_PATH=${BB_BUNDLE_PATH:-$HOME/.bb.bundles/}
+export BB_AUTOLOAD_PATH=${BB_AUTOLOAD_PATH:-$HOME/.bb.autoload/}
+export BB_INFO=${BB_INFO:-false}
+export BB_DEBUG=${BB_DEBUG:-false}
+export BB_FILES_PATH=${BB_FILES_PATH:-$HOME}
+export BB_FILES_PREFIX=${BB_FILES_PREFIX:-.bashrc.}
+export BB_FILES_SUFFIX=${BB_FILES_SUFFIX:-}
+export BB_LOAD_FILES=${BB_LOAD_FILES:-}
 
 function bb_info() {
 	$BB_INFO && echo "$@"
